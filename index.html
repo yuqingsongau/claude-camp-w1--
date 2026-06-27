@@ -101,6 +101,72 @@
     border-bottom:1px solid var(--rust);
   }
   a.viewlink:hover{color:var(--moss); border-color:var(--moss);}
+
+  .runbtn{
+    font-size:13.5px;
+    font-family:inherit;
+    background:var(--moss);
+    color:var(--card);
+    border:none;
+    padding:6px 14px;
+    border-radius:3px;
+    cursor:pointer;
+  }
+  .runbtn:hover{background:var(--ink);}
+  .runbtn[aria-expanded="true"]{background:var(--ink);}
+
+  .tool{
+    margin-top:18px;
+    padding-top:18px;
+    border-top:1px dashed var(--paper-line);
+    display:none;
+  }
+  .tool.open{display:block;}
+  .tool label{
+    display:block;
+    font-size:13px;
+    color:var(--ink-soft);
+    margin-bottom:4px;
+  }
+  .tool .row{
+    margin-bottom:14px;
+  }
+  .tool input[type="text"],
+  .tool input[type="number"],
+  .tool select{
+    width:100%;
+    max-width:280px;
+    font-family:inherit;
+    font-size:14px;
+    padding:7px 9px;
+    border:1px solid var(--paper-line);
+    border-radius:3px;
+    background:var(--paper);
+    color:var(--ink);
+  }
+  .tool .go{
+    font-family:inherit;
+    font-size:13.5px;
+    background:var(--rust);
+    color:var(--card);
+    border:none;
+    padding:8px 16px;
+    border-radius:3px;
+    cursor:pointer;
+  }
+  .tool .go:hover{background:var(--ink);}
+  .output{
+    margin-top:14px;
+    padding:12px 14px;
+    background:var(--paper);
+    border:1px solid var(--paper-line);
+    border-radius:3px;
+    font-size:14px;
+    white-space:pre-wrap;
+    min-height:20px;
+  }
+  .output:empty{display:none;}
+
   footer{
     max-width:760px;
     margin:40px auto 0;
@@ -117,11 +183,12 @@
 <header>
   <p class="eyebrow">Claude Camp · Week 1 · Python 练习集</p>
   <h1>5个小程序，5次练习</h1>
-  <p class="lede">从问候语到PIN码生成器，记录的是边写边学的过程，不是成品软件。每一份都还在改。</p>
+  <p class="lede">从问候语到PIN码生成器，记录的是边写边学的过程，不是成品软件。点"试用"可以直接在网页里跑一遍逻辑（用JavaScript还原的，原版是Python写的）。</p>
 </header>
 
 <main>
 
+  <!-- 01 问候语 -->
   <div class="entry">
     <p class="tag">01 · 字符串与格式化</p>
     <h2>个性化问候语</h2>
@@ -129,9 +196,23 @@
     <div class="entry-foot">
       <span class="filename">greeting.py</span>
       <a class="viewlink" href="https://github.com/yuqingsongau/claude-camp-w1--/blob/main/greeting.py" target="_blank" rel="noopener">在GitHub查看代码 →</a>
+      <button class="runbtn" aria-expanded="false" onclick="toggleTool(this,'tool-greeting')">试用 ▾</button>
+    </div>
+    <div class="tool" id="tool-greeting">
+      <div class="row">
+        <label for="g-name">姓名</label>
+        <input type="text" id="g-name" placeholder="例如：小明">
+      </div>
+      <div class="row">
+        <label for="g-age">年龄</label>
+        <input type="number" id="g-age" placeholder="例如：25">
+      </div>
+      <button class="go" onclick="runGreeting()">生成问候语</button>
+      <div class="output" id="out-greeting"></div>
     </div>
   </div>
 
+  <!-- 02 BMI -->
   <div class="entry">
     <p class="tag">02 · 条件判断</p>
     <h2>BMI 计算器</h2>
@@ -139,9 +220,23 @@
     <div class="entry-foot">
       <span class="filename">BMI_calculator.py</span>
       <a class="viewlink" href="https://github.com/yuqingsongau/claude-camp-w1--/blob/main/BMI_calculator.py" target="_blank" rel="noopener">在GitHub查看代码 →</a>
+      <button class="runbtn" aria-expanded="false" onclick="toggleTool(this,'tool-bmi')">试用 ▾</button>
+    </div>
+    <div class="tool" id="tool-bmi">
+      <div class="row">
+        <label for="b-height">身高 (厘米)</label>
+        <input type="number" id="b-height" placeholder="例如：165">
+      </div>
+      <div class="row">
+        <label for="b-weight">体重 (公斤)</label>
+        <input type="number" id="b-weight" placeholder="例如：58">
+      </div>
+      <button class="go" onclick="runBMI()">计算BMI</button>
+      <div class="output" id="out-bmi"></div>
     </div>
   </div>
 
+  <!-- 03 小费 -->
   <div class="entry">
     <p class="tag">03 · 数值计算</p>
     <h2>小费计算器</h2>
@@ -149,9 +244,23 @@
     <div class="entry-foot">
       <span class="filename">Tip_calculator.py</span>
       <a class="viewlink" href="https://github.com/yuqingsongau/claude-camp-w1--/blob/main/Tip_calculator.py" target="_blank" rel="noopener">在GitHub查看代码 →</a>
+      <button class="runbtn" aria-expanded="false" onclick="toggleTool(this,'tool-tip')">试用 ▾</button>
+    </div>
+    <div class="tool" id="tool-tip">
+      <div class="row">
+        <label for="t-bill">餐费金额</label>
+        <input type="number" id="t-bill" placeholder="例如：100">
+      </div>
+      <div class="row">
+        <label for="t-percent">小费比例 (%)</label>
+        <input type="number" id="t-percent" placeholder="例如：15">
+      </div>
+      <button class="go" onclick="runTip()">计算总金额</button>
+      <div class="output" id="out-tip"></div>
     </div>
   </div>
 
+  <!-- 04 PIN -->
   <div class="entry">
     <p class="tag">04 · 随机与循环</p>
     <h2>PIN 码生成器</h2>
@@ -159,9 +268,19 @@
     <div class="entry-foot">
       <span class="filename">pin_generator.py</span>
       <a class="viewlink" href="https://github.com/yuqingsongau/claude-camp-w1--/blob/main/pin_generator.py" target="_blank" rel="noopener">在GitHub查看代码 →</a>
+      <button class="runbtn" aria-expanded="false" onclick="toggleTool(this,'tool-pin')">试用 ▾</button>
+    </div>
+    <div class="tool" id="tool-pin">
+      <div class="row">
+        <label for="p-length">PIN码长度</label>
+        <input type="number" id="p-length" placeholder="例如：6" min="1">
+      </div>
+      <button class="go" onclick="runPin()">生成PIN码</button>
+      <div class="output" id="out-pin"></div>
     </div>
   </div>
 
+  <!-- 05 温度转换 -->
   <div class="entry">
     <p class="tag">05 · 跨语言 / 部署</p>
     <h2>温度转换器</h2>
@@ -169,6 +288,22 @@
     <div class="entry-foot">
       <span class="filename">temperature_converter.py · .html</span>
       <a class="viewlink" href="https://github.com/yuqingsongau/claude-camp-w1--/blob/main/temperature_converter.py" target="_blank" rel="noopener">在GitHub查看代码 →</a>
+      <button class="runbtn" aria-expanded="false" onclick="toggleTool(this,'tool-temp')">试用 ▾</button>
+    </div>
+    <div class="tool" id="tool-temp">
+      <div class="row">
+        <label for="temp-dir">转换方向</label>
+        <select id="temp-dir">
+          <option value="f2c">华氏 → 摄氏 (F → C)</option>
+          <option value="c2f">摄氏 → 华氏 (C → F)</option>
+        </select>
+      </div>
+      <div class="row">
+        <label for="temp-val">温度数值</label>
+        <input type="number" id="temp-val" placeholder="例如：98.6">
+      </div>
+      <button class="go" onclick="runTemp()">转换</button>
+      <div class="output" id="out-temp"></div>
     </div>
   </div>
 
@@ -177,6 +312,113 @@
 <footer>
   完整仓库: <a href="https://github.com/yuqingsongau/claude-camp-w1--" target="_blank" rel="noopener">github.com/yuqingsongau/claude-camp-w1--</a>
 </footer>
+
+<script>
+  function toggleTool(btn, id){
+    const el = document.getElementById(id);
+    const isOpen = el.classList.contains('open');
+    el.classList.toggle('open', !isOpen);
+    btn.setAttribute('aria-expanded', String(!isOpen));
+    btn.textContent = (!isOpen ? '收起 ▴' : '试用 ▾');
+  }
+
+  // 01 问候语
+  function runGreeting(){
+    const name = document.getElementById('g-name').value.trim();
+    const ageStr = document.getElementById('g-age').value;
+    const out = document.getElementById('out-greeting');
+
+    if (!name){
+      out.textContent = "请输入姓名哦~";
+      return;
+    }
+    const age = parseInt(ageStr, 10);
+    if (isNaN(age)){
+      out.textContent = "年龄请输入数字哦~";
+      return;
+    }
+    let stage;
+    if (age < 18) stage = "未成年";
+    else if (age < 60) stage = "成年人";
+    else stage = "长辈";
+
+    out.textContent = `你好, ${name}! 你今年 ${age} 岁, 属于「${stage}」阶段, 祝你身体健康, 万事如意! 🎉`;
+  }
+
+  // 02 BMI
+  function runBMI(){
+    const h = parseFloat(document.getElementById('b-height').value);
+    const w = parseFloat(document.getElementById('b-weight').value);
+    const out = document.getElementById('out-bmi');
+
+    if (isNaN(h) || isNaN(w) || h <= 0 || w <= 0){
+      out.textContent = "请输入有效的身高和体重哦~";
+      return;
+    }
+    const hMeters = h / 100;
+    const bmi = w / (hMeters * hMeters);
+    let category;
+    if (bmi < 18.5) category = "偏瘦";
+    else if (bmi < 24) category = "正常";
+    else if (bmi < 28) category = "偏重";
+    else category = "肥胖";
+
+    out.textContent = `你的BMI是 ${bmi.toFixed(1)}, 属于「${category}」区间。`;
+  }
+
+  // 03 小费
+  function runTip(){
+    const bill = parseFloat(document.getElementById('t-bill').value);
+    const percent = parseFloat(document.getElementById('t-percent').value);
+    const out = document.getElementById('out-tip');
+
+    if (isNaN(bill) || isNaN(percent) || bill < 0 || percent < 0){
+      out.textContent = "请输入有效的数字哦~";
+      return;
+    }
+    const tip = bill * (percent / 100);
+    const total = bill + tip;
+    out.textContent =
+`餐费金额: $${bill.toFixed(2)}
+小费金额: $${tip.toFixed(2)}
+总金额: $${total.toFixed(2)}`;
+  }
+
+  // 04 PIN
+  function runPin(){
+    const len = parseInt(document.getElementById('p-length').value, 10);
+    const out = document.getElementById('out-pin');
+
+    if (isNaN(len) || len <= 0){
+      out.textContent = "长度必须是正整数哦~";
+      return;
+    }
+    let pin = "";
+    for (let i = 0; i < len; i++){
+      pin += Math.floor(Math.random() * 10).toString();
+    }
+    out.textContent = `生成的PIN码是: ${pin}`;
+  }
+
+  // 05 温度转换
+  function runTemp(){
+    const dir = document.getElementById('temp-dir').value;
+    const val = parseFloat(document.getElementById('temp-val').value);
+    const out = document.getElementById('out-temp');
+
+    if (isNaN(val)){
+      out.textContent = "请输入有效数字 / Enter a valid number";
+      return;
+    }
+    if (dir === "f2c"){
+      const c = (val - 32) * 5 / 9;
+      out.textContent = `${val}°F = ${c.toFixed(2)}°C`;
+    } else {
+      const f = val * 9 / 5 + 32;
+      out.textContent = `${val}°C = ${f.toFixed(2)}°F`;
+    }
+  }
+</script>
 
 </body>
 </html>
