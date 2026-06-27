@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cindy 的 Python 学习笔记 · Week 1</title>
+<style>
+  :root{
+    --paper:#f1ece1;
+    --paper-line:#d8cfba;
+    --ink:#2e2a24;
+    --ink-soft:#6b6353;
+    --rust:#b6552c;
+    --moss:#5c6e4f;
+    --card:#fbf8f1;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--paper);
+    background-image:
+      repeating-linear-gradient(to bottom, transparent 0 38px, var(--paper-line) 38px 39px);
+    color:var(--ink);
+    font-family:'Courier New', ui-monospace, Menlo, monospace;
+    line-height:1.6;
+    padding:0 0 80px;
+  }
+  header{
+    max-width:760px;
+    margin:0 auto;
+    padding:70px 24px 30px;
+  }
+  .eyebrow{
+    font-size:13px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--rust);
+    margin:0 0 10px;
+  }
+  h1{
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size:42px;
+    margin:0 0 14px;
+    line-height:1.15;
+  }
+  .lede{
+    color:var(--ink-soft);
+    font-size:15px;
+    max-width:520px;
+    margin:0;
+  }
+  main{
+    max-width:760px;
+    margin:0 auto;
+    padding:10px 24px;
+  }
+  .entry{
+    background:var(--card);
+    border:1px solid var(--paper-line);
+    border-left:4px solid var(--moss);
+    border-radius:2px;
+    padding:26px 28px;
+    margin-bottom:22px;
+    position:relative;
+  }
+  .entry:nth-child(2){border-left-color:var(--rust);}
+  .entry:nth-child(4){border-left-color:var(--rust);}
+  .tag{
+    font-size:12px;
+    color:var(--ink-soft);
+    letter-spacing:.06em;
+  }
+  .entry h2{
+    font-family:Georgia, serif;
+    font-size:22px;
+    margin:6px 0 8px;
+  }
+  .entry p{
+    margin:0 0 16px;
+    font-size:14.5px;
+    color:var(--ink);
+  }
+  .entry-foot{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+  .filename{
+    font-size:13px;
+    background:var(--paper);
+    border:1px dashed var(--paper-line);
+    padding:3px 8px;
+    border-radius:3px;
+    color:var(--ink-soft);
+  }
+  a.viewlink{
+    font-size:13.5px;
+    color:var(--rust);
+    text-decoration:none;
+    border-bottom:1px solid var(--rust);
+  }
+  a.viewlink:hover{color:var(--moss); border-color:var(--moss);}
+  footer{
+    max-width:760px;
+    margin:40px auto 0;
+    padding:20px 24px 0;
+    border-top:1px solid var(--paper-line);
+    color:var(--ink-soft);
+    font-size:13px;
+  }
+  footer a{color:var(--ink-soft);}
+</style>
+</head>
+<body>
+
+<header>
+  <p class="eyebrow">Claude Camp · Week 1 · Python 练习集</p>
+  <h1>5个小程序，5次练习</h1>
+  <p class="lede">从问候语到PIN码生成器，记录的是边写边学的过程，不是成品软件。每一份都还在改。</p>
+</header>
+
+<main>
+
+  <div class="entry">
+    <p class="tag">01 · 字符串与格式化</p>
+    <h2>个性化问候语</h2>
+    <p>输入姓名和年龄，按年龄段生成一句话问候。第一次用上 f-string 和 try/except。</p>
+    <div class="entry-foot">
+      <span class="filename">greeting.py</span>
+      <a class="viewlink" href="https://github.com/yuqingsongau/claude-camp-w1--/blob/main/greeting.py" target="_blank" rel="noopener">在GitHub查看代码 →</a>
+    </div>
+  </div>
+
+  <div class="entry">
+    <p class="tag">02 · 条件判断</p>
+    <h2>BMI 计算器</h2>
+    <p>输入身高体重，算出BMI并判断体重区间。压缩到30行以内的小练习。</p>
+    <div class="entry-foot">
+      <span class="filename">BMI_calculator.py</span>
+      <a class="viewlink" href="https://github.com/yuqingsongau/claude-camp-w1--/blob/main/BMI_calculator.py" target="_blank" rel="noopener">在GitHub查看代码 →</a>
+    </div>
+  </div>
+
+  <div class="entry">
+    <p class="tag">03 · 数值计算</p>
+    <h2>小费计算器</h2>
+    <p>输入餐费金额和小费比例，输出小费和总金额，结果保留两位小数。</p>
+    <div class="entry-foot">
+      <span class="filename">Tip_calculator.py</span>
+      <a class="viewlink" href="https://github.com/yuqingsongau/claude-camp-w1--/blob/main/Tip_calculator.py" target="_blank" rel="noopener">在GitHub查看代码 →</a>
+    </div>
+  </div>
+
+  <div class="entry">
+    <p class="tag">04 · 随机与循环</p>
+    <h2>PIN 码生成器</h2>
+    <p>输入想要的长度，随机生成对应位数的数字PIN码。练习 random 模块和循环拼接字符串。</p>
+    <div class="entry-foot">
+      <span class="filename">pin_generator.py</span>
+      <a class="viewlink" href="https://github.com/yuqingsongau/claude-camp-w1--/blob/main/pin_generator.py" target="_blank" rel="noopener">在GitHub查看代码 →</a>
+    </div>
+  </div>
+
+  <div class="entry">
+    <p class="tag">05 · 跨语言 / 部署</p>
+    <h2>温度转换器</h2>
+    <p>摄氏度与华氏度互转，双语输出。同时写了Python版和网页版，练习了把脚本变成可分享的网页。</p>
+    <div class="entry-foot">
+      <span class="filename">temperature_converter.py · .html</span>
+      <a class="viewlink" href="https://github.com/yuqingsongau/claude-camp-w1--/blob/main/temperature_converter.py" target="_blank" rel="noopener">在GitHub查看代码 →</a>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  完整仓库: <a href="https://github.com/yuqingsongau/claude-camp-w1--" target="_blank" rel="noopener">github.com/yuqingsongau/claude-camp-w1--</a>
+</footer>
+
+</body>
+</html>
